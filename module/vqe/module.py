@@ -18,6 +18,7 @@ hackathon_tag           = 'hackathon-{}'.format(hackathon_date if hackathon_date
 hackathon_remote_repo   = 'ck-quantum-hackathon-{}'.format(hackathon_date) if hackathon_date else 'ck-quantum-hackathons'
 
 import os
+import getpass
 import sys
 from pprint import pprint
 
@@ -214,7 +215,7 @@ def run(i):
         if r['return']>0: return r
         timestamp   = r['iso_datetime'].split('.')[0].replace(':', '_').replace('-', '_')   # cut to seconds' resolution
 
-    username       = os.getlogin()
+    username       = getpass.getuser()
     sample_size    = i.get('sample_size', 100)
     max_iterations = i.get('max_iterations', 80)
     repetitions    = i.get('repetitions', 3)
